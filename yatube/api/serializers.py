@@ -35,13 +35,13 @@ class FollowSerializer(serializers.ModelSerializer):
         read_only=True,
         default=serializers.CurrentUserDefault()
     )
-    following = SlugRelatedField(
+    author = SlugRelatedField(
         slug_field='username',
         queryset=User.objects.all()
     )
 
     class Meta:
-        fields = ('user', 'following')
+        fields = ('user', 'author')
         model = Follow
         validators = [
             serializers.UniqueTogetherValidator(
